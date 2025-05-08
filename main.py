@@ -1,11 +1,24 @@
 from kivy.app import App
 from kivy.metrics import dp
+from kivy.properties import StringProperty
 from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.stacklayout import StackLayout
 from kivy.uix.widget import Widget
+
+class WidgetsExample(GridLayout):
+  my_text = StringProperty('You clicked 0 times!')
+  count=0
+  def click_count(self):
+    self.count+=1
+    print(self.count)
+  def on_button_click(self):
+    self.click_count()
+    self.my_text = 'You clicked ' + str(self.count) + ' times!'
+    print('button clicked')
+
 
 
 class StackLayoutExample(StackLayout):
