@@ -1,6 +1,6 @@
 from kivy.app import App
 from kivy.metrics import dp
-from kivy.properties import StringProperty
+from kivy.properties import StringProperty, BooleanProperty
 from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
@@ -9,16 +9,31 @@ from kivy.uix.stacklayout import StackLayout
 from kivy.uix.widget import Widget
 
 class WidgetsExample(GridLayout):
-  my_text = StringProperty('You clicked 0 times!')
+  my_text = StringProperty('0')
   count=0
+  count_enable = BooleanProperty(False)
+
   def click_count(self):
     self.count+=1
     print(self.count)
+
   def on_button_click(self):
-    self.click_count()
-    self.my_text = 'You clicked ' + str(self.count) + ' times!'
+    if self.count_enable:
+      self.count+=1
+      self.my_text = str(self.count)
     print('button clicked')
 
+  def on_toogle_button_state(self, widget):
+    print('toogle state: '+widget.state)
+    if widget.state == 'normal':
+      widget.text = 'OFF'
+      self.count_enable = False
+    else:
+      widget.text = 'ON'
+      self.count_enable = True
+
+  def on_switch_active(self, widget):
+    print('switch: '+str(widget.active))
 
 
 class StackLayoutExample(StackLayout):

@@ -2,14 +2,26 @@ WidgetsExample:
 
 <WidgetsExample>:
     cols: 3
+    ToggleButton:
+        text: 'OFF'
+        on_state: root.on_toogle_button_state(self)
+        size_hint: None, 1
+        width: '100dp'
     Button:
         text: 'Count'
         on_press: root.on_button_click()
+        disabled: not root.count_enable
     Label:
         text: root.my_text
         font_name: 'fonts/Lcd.ttf'
         font_size: '40dp'
         color: 1, .5, 1, 1
+
+    Switch:
+        size_hint: None, 1
+        width: '100dp'
+        on_active: root.on_switch_active(self)
+
 <PageLayoutExample@PageLayout>:
     MainWidget:
     BoxLayoutExample:
