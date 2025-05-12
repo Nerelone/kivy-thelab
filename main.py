@@ -10,6 +10,7 @@ from kivy.uix.widget import Widget
 
 class WidgetsExample(GridLayout):
   my_text = StringProperty('0')
+  text_input_str = StringProperty('abacate')
   count=0
   count_enable = BooleanProperty(False)
   # slider_value_txt=StringProperty('50')
@@ -38,6 +39,13 @@ class WidgetsExample(GridLayout):
   def on_slider_value(self, widget):
     # self.slider_value_txt = str(int(widget.value))
     print('slider: '+str(int(widget.value)))
+
+  def on_text_validate(self, widget):
+    self.text_input_str = widget.text
+
+
+
+
 
 class StackLayoutExample(StackLayout):
   def __init__(self,**kwargs):
