@@ -18,20 +18,28 @@ WidgetsExample:
         color: 1, .5, 1, 1
 
     Switch:
+        id: my_switch
         size_hint: None, 1
         width: '100dp'
         on_active: root.on_switch_active(self)
     Slider:
+        disabled: not my_switch.active
+        id: my_slider
         min: 0
         max: 100
         value: 50
-        on_value: root.on_slider_value(self)
+        # on_value: root.on_slider_value(self)
         orientation: 'vertical'
-    Label:
-        text: root.slider_value_txt
-        font_name: 'fonts/Lcd.ttf'
-        font_size: '40dp'
-        color: 1, .5, 1, 1
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: str(int(my_slider.value))
+            font_name: 'fonts/Lcd.ttf'
+            font_size: '40dp'
+            color: 1, .5, 1, 1
+        ProgressBar:
+            max: 100
+            value: my_slider.value
 <PageLayoutExample@PageLayout>:
     MainWidget:
     BoxLayoutExample:
